@@ -127,3 +127,14 @@ export function getPlan(slug: string) {
 export function getPlanSlugs() {
   return readDir("plans").map((p) => p.slug);
 }
+
+// 프로젝트 ERD: content/erds/{프로젝트 slug}.md (mermaid 다이어그램)
+export function getErd(slug: string) {
+  const p = readDir("erds").find((x) => x.slug === slug);
+  if (!p) return null;
+  return { title: (p.data.title as string) ?? "ERD", html: marked.parse(p.content) as string };
+}
+
+export function getErdSlugs() {
+  return readDir("erds").map((p) => p.slug);
+}

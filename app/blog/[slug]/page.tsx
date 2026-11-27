@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPost, getPosts } from "@/lib/content";
 import Tags from "@/components/Tags";
+import Mermaid from "@/components/Mermaid";
+import { enhanceDesignHtml } from "@/lib/design";
 
 export function generateStaticParams() {
   return getPosts().map((p) => ({ slug: p.slug }));
@@ -30,7 +32,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           <Tags items={p.meta.tags} />
         </div>
       </header>
-      <div className="prose" dangerouslySetInnerHTML={{ __html: p.html }} />
+      <div className="prose" dangerouslySetInnerHTML={{ __html: enhanceDesignHtml(p.html) }} />
+      <Mermaid />
     </article>
   );
 }

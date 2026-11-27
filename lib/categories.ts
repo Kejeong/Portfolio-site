@@ -2,7 +2,5 @@
 export const categories = [
   { slug: "database", name: "Database" },
   { slug: "backend", name: "BackEnd" },
-  { slug: "frontend", name: "FrontEnd" },
-  { slug: "infra", name: "Infra" },
   { slug: "monitoring", name: "Monitoring" },
 ] as const;

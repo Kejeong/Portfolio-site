@@ -18,7 +18,7 @@ npm run build    # 배포 전 확인
 ---
 title: 글 제목
 date: 2026-11-25
-category: BackEnd   # Database / BackEnd / FrontEnd / Infra / Monitoring 중 하나 (사이드바 기록 메뉴)
+category: BackEnd   # Database / BackEnd / Monitoring 중 하나 (사이드바 기록 메뉴)
 tags: [Spring, DB]
 summary: 목록에 보일 한 줄 설명
 cover: DB → outbox → Kafka   # 목록 오른쪽 썸네일 문구 (선택)

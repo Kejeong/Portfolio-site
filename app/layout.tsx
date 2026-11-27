@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import MenuBar from "@/components/MenuBar";
@@ -14,6 +14,14 @@ const pretendard = localFont({
   display: "swap",
   weight: "45 920",
 });
+
+// 모바일 브라우저 주소창·위쪽 바깥 영역 색을 메뉴바 색에 맞춘다
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f9f9fa" },
+    { media: "(prefers-color-scheme: dark)", color: "#1b1b1d" },
+  ],
+};
 
 export const metadata: Metadata = {
   title: { default: "김은정 | 백엔드 개발자", template: "%s | 김은정" },

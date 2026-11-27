@@ -6,6 +6,8 @@ export const profile = {
     "실제 서비스를 2년간 개발하고 운영하면서 유지보수가 얼마나 중요한지 배웠습니다. 기능을 만들기 전에 무엇이 문제인지부터 정리하고, 동시성과 데이터 정합성까지 생각해서 오래 쓸 수 있는 구조를 고민합니다",
   email: "keunjeong613@gmail.com",
   github: "https://github.com/Kejeong",
+  // 노션 스터디 노트 (사이드바 기록 메뉴 아래)
+  notion: "https://almond-collar-aba.notion.site/STUDY-3328151da0e1803da0bfeff683cc9710",
   photo: "/profile.jpg",
   // public 폴더에 같은 이름으로 PDF를 넣으면 사이드바 메뉴에서 열린다
   resumePdf: "/resume.pdf",
@@ -14,38 +16,29 @@ export const profile = {
   sideIntro: "설계로 문제를 끝내는 개발자.\n동시성과 데이터 정합성을 고민합니다.",
 };
 
-// 홈(소개) 화면
+// 홈(소개) 화면: 질문과 대답. 대답 안의 **굵게**는 굵은 글씨로 보인다
 export const about = {
   hello: "안녕하세요,",
-  titleBefore: "백엔드 개발자 ",
-  titleName: "김은정",
-  titleAfter: "입니다",
-  text: "계획을 세우고 차근차근 정리하는 것을 좋아합니다! 그래서 개발할 때도 바로 만들기보다 무엇이 문제인지부터 정리하고 시작합니다 쉬는 날에는 드라이브를 가거나 좋아하는 카페에서 카공을 하는 편입니다 :)",
-  mbti: {
-    type: "ISTJ",
-    desc: "계획하고, 정리하고, 끝까지 지키는 타입",
-    letters: [
-      { letter: "I", word: "내향" },
-      { letter: "S", word: "감각" },
-      { letter: "T", word: "사고" },
-      { letter: "J", word: "판단" },
-    ],
-  },
-  // icon: car | coffee | sparkle | list | pencil
-  likes: [
-    { icon: "car", value: "드라이브", desc: "창밖 풍경 보며 달리기" },
-    { icon: "coffee", value: "카페", desc: "커피 한 잔과 노트북" },
-    { icon: "sparkle", value: "트렌디한 것", desc: "새로 나온 것들 먼저 써보기" },
+  title: "백엔드 개발자 김은정입니다",
+  text: "계획을 세우고 차근차근 정리하는 것을 좋아합니다! 그래서 개발할 때도 바로 만들기보다 무엇이 문제인지부터 정리하고 시작합니다.",
+  qaTitle: "자주 듣는 질문",
+  qa: [
+    {
+      q: "어떤 개발자인가요?",
+      a: "기능을 만들기 전에 **무엇이 문제인지부터 정리**하는 편입니다. 실제 서비스를 2년간 운영과 유지보수를 하면서, 동시성과 데이터 정합성까지 구조적인 부분에 고민을 많이 했던 것 같습니다.",
+    },
+    { q: "MBTI는요?", a: "**ISTJ**입니다. 내향형이지만 친해지만 조잘조잘 말이 많아져요!" },
+    {
+      q: "쉬는 날엔 뭐 해요?",
+      a: "**드라이브**를 가거나 좋아하는 **카페에서 카공**을 하는 편이에요! 그리고 넷플릭스를 보는걸 좋아하는데 데블스플랜, 피의게임 등 생존게임 부류를 좋아하는 것 같습니다",
+    },
+    { q: "요즘은요?", a: "프로젝트에서 부딪힌 문제를 **블로그에 기록**하고, 이제는 CS적인 부분이 중요해진 것 같아서 기본기를 다지는 중입니다" },
   ],
-  cards: [
-    { icon: "list", label: "일하는 방식", value: "문제부터 정리", desc: "기능보다 먼저 무엇이 문제인지 적어봐요" },
-    { icon: "pencil", label: "요즘", value: "공부 기록 중", desc: "프로젝트에서 부딪힌 문제를 블로그에 정리해요" },
-  ],
-  keywords: ["ISTJ", "계획형", "드라이브", "카페투어", "트렌드", "백엔드", "기록하는_개발자"],
 };
 
 export const experience = [
   {
+    slug: "cloudlab", // 상세 주소: /experience/cloudlab
     company: "(주)클라우드랩",
     role: "백엔드 개발, 현장관리팀",
     period: "24.06 — 26.08",
@@ -68,6 +61,7 @@ export const experience = [
     detail: "cloudlab",
   },
   {
+    slug: "ajuqms",
     company: "(주)아주큐엠에스",
     role: "RPA 인턴",
     period: "23.06 — 23.08",

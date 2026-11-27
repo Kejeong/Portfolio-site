@@ -21,6 +21,9 @@ const icons = {
     <svg viewBox="0 0 16 16"><rect x="2.5" y="4.5" width="11" height="8.5" rx="1.5" /><path d="M6 4.5V3h4v1.5" /></svg>
   ),
   doc: <svg viewBox="0 0 16 16"><path d="M3 2.5h7l3 3v8H3z" /><path d="M5.5 8h5M5.5 10.5h5" /></svg>,
+  notion: (
+    <svg viewBox="0 0 16 16"><rect x="2.5" y="2" width="11" height="12" rx="2" /><path d="M5.5 11V5l5 6V5" /></svg>
+  ),
   pdf: (
     <svg viewBox="0 0 16 16"><path d="M3.5 1.5h6l3 3v10h-9z" /><path d="M9.5 1.5v3h3" /><path d="M5.5 9h5M5.5 11.5h3" /></svg>
   ),
@@ -94,7 +97,7 @@ export default function Sidebar({ categories, postCount, projectCount, pdfs }: P
           {pdfItem(profile.resumePdf, "이력서", pdfs.resume)}
           {pdfItem(profile.portfolioPdf, "포트폴리오", pdfs.portfolio)}
           {item("/projects", icons.folder, "프로젝트", projectCount, pathname.startsWith("/projects"))}
-          {item("/experience", icons.case, "경력", undefined, pathname.startsWith("/experience"))}
+          {item("/experience", icons.case, "경력 및 교육", undefined, pathname.startsWith("/experience"))}
 
           <div className="grp">기록</div>
           {item(
@@ -113,6 +116,11 @@ export default function Sidebar({ categories, postCount, projectCount, pdfs }: P
               pathname === `/blog/category/${c.slug}`,
             ),
           )}
+          <a href={profile.notion} target="_blank" rel="noreferrer" className="sb-link sb-notion">
+            {icons.notion}
+            <span>스터디 노트</span>
+            <small>Notion ↗</small>
+          </a>
         </nav>
       </div>
     </aside>

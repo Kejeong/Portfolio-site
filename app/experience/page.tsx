@@ -1,72 +1,71 @@
 import type { Metadata } from "next";
-import { experience } from "@/lib/profile";
-import { getProject } from "@/lib/content";
-import { enhanceDesignHtml } from "@/lib/design";
+import Link from "next/link";
+import { certificates, education, experience } from "@/lib/profile";
 import Tags from "@/components/Tags";
 
-export const metadata: Metadata = { title: "Experience" };
-
-type Job = (typeof experience)[number] & {
-  stats?: { value: string; label: string }[];
-  detail?: string;
-};
+export const metadata: Metadata = { title: "경력 및 교육" };
 
 export default function ExperiencePage() {
+  // 최근 교육이 먼저 오도록 뒤집는다
+  const edu = [...education].reverse();
   return (
     <>
-      <h2 className="page-title">경력</h2>
-      <p className="page-lead">실제 서비스를 만들고 운영하며 해온 일</p>
-
-      {(experience as Job[]).map((e) => {
-        const detail = e.detail ? getProject(e.detail) : null;
-        return (
-          <section key={e.company} className="job">
-            <header className="job-head">
-              <div className="job-title">
-                <h3>{e.company}</h3>
-                <p>
-                  {e.role}
-                  <span className="job-period-m"> · {e.period}</span>
-                </p>
-              </div>
-              <time>{e.period}</time>
-            </header>
-
-            <p className="job-summary">{e.summary}</p>
-
-            {e.stats && (
-              <div className="stats">
-                {e.stats.map((s) => (
-                  <div key={s.label}>
-                    <b>{s.value}</b>
-                    <span>{s.label}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {e.points.length > 0 && (
-              <>
-                <h4 className="job-sub">맡은 일</h4>
-                <ul className="job-points">
-                  {e.points.map((pt) => (
-                    <li key={pt}>{pt}</li>
-                  ))}
-                </ul>
-              </>
-            )}
-
-            {e.tech.length > 0 && <Tags items={e.tech} />}
-
-            {detail && (
-              <div className="design">
-                <h4 className="design-title">설계 상세</h4>
-                <div className="prose" dangerouslySetInnerHTML={{ __html: enhanceDesignHtml(detail.html) }} />
-              </div>
-            )}
-          </section>
+    <section className="sec">
+      <h2 className="sec-title">EXPERIENCE</h2>
+      {experience.map((e) => {
+        const body = (
+          <>
+            <span className="when">{e.period}</span>
+            <div>
+              <h3>
+                {e.company}
+                <small>{e.role}</small>
+              </h3>
+              <p>{e.summary}</p>
+              {e.tech.length > 0 && <Tags items={e.tech} />}
+            </div>
+          </>
+        );
+        // 상세 문서(detail)가 있는 경력만 상세 페이지로 이동한다
+        return "detail" in e && e.detail ? (
+          <Link key={e.slug} href={`/experience/${e.slug}`} className="item">
+            {body}
+          </Link>
+        ) : (
+          <div key={e.slug} className="item">
+            {body}
+          </div>
         );
       })}
+    </section>
+
+    <section className="sec">
+      <h2 className="sec-title">EDUCATION</h2>
+      {edu.map((e) => (
+        <div key={e.title} className="item">
+          <span className="when">{e.period}</span>
+          <div>
+            <h3>{e.title}</h3>
+            <p>{e.sub}</p>
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <section className="sec">
+      <h2 className="sec-title">CERTIFICATE</h2>
+      {certificates.map((c) => (
+        <div key={c.title} className="item">
+          <span className="when">{c.date}</span>
+          <div>
+            <h3>
+              {c.title}
+              <small>{c.org}</small>
+            </h3>
+          </div>
+        </div>
+      ))}
+    </section>
     </>
   );
 }

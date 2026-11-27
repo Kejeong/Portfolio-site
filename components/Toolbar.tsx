@@ -6,8 +6,9 @@ import { categories } from "@/lib/categories";
 function titleOf(path: string) {
   if (path === "/") return "소개";
   if (path.startsWith("/projects/") && path.endsWith("/plan")) return "기획서";
+  if (path.startsWith("/projects/") && path.endsWith("/erd")) return "ERD";
   if (path.startsWith("/projects")) return "프로젝트";
-  if (path.startsWith("/experience")) return "경력";
+  if (path.startsWith("/experience")) return "경력 및 교육";
   if (path.startsWith("/blog/category/")) {
     const slug = path.slice("/blog/category/".length);
     return categories.find((c) => c.slug === slug)?.name ?? "기록";

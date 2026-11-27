@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPlan, getProject, getProjects } from "@/lib/content";
+import { getErd, getPlan, getProject, getProjects } from "@/lib/content";
 import Tags from "@/components/Tags";
 import Mermaid from "@/components/Mermaid";
+import SideToc from "@/components/SideToc";
 import { enhanceDesignHtml, withSectionIds } from "@/lib/design";
 
 export function generateStaticParams() {
@@ -23,9 +24,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const m = p.meta;
   const { html, sections } = withSectionIds(enhanceDesignHtml(p.html));
   const hasPlan = !m.plan && !!getPlan(slug);
-  const hasLinks = m.github || m.link || m.plan || hasPlan;
+  const erdPage = !!getErd(slug);
+  const hasErd = sections.some((x) => x.id === "ERD");
+  const hasLinks = m.github || m.link || m.plan || hasPlan || hasErd || erdPage;
 
   return (
+    <div className="with-toc">
     <article>
       <Link href="/projects" className="back">
         ← Projects
@@ -65,11 +69,22 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     기획서 <i>→</i>
                   </Link>
                 )}
+                {erdPage ? (
+                  <Link href={`/projects/${slug}/erd`}>
+                    ERD <i>→</i>
+                  </Link>
+                ) : (
+                  hasErd && (
+                    <a href="#ERD">
+                      ERD <i>↓</i>
+                    </a>
+                  )
+                )}
               </div>
             </div>
           )}
           {sections.length > 1 && (
-            <div className="toc-row">
+            <div className="toc-row toc-sections">
               <span className="toc-label">목차</span>
               <div className="toc-items">
                 {sections.map((s) => (
@@ -86,5 +101,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <div className="prose" dangerouslySetInnerHTML={{ __html: html }} />
       <Mermaid />
     </article>
+    <SideToc sections={sections} />
+    </div>
   );
 }
