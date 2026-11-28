@@ -279,6 +279,9 @@ article > .prose:first-of-type > h2[id]:first-child { border-top: 0; padding-top
 .prose img { max-width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
 .prose a:has(> img) { display: block; margin: 16px 0; }
 .prose .shots { display: grid; grid-template-columns: repeat(2, minmax(0, 220px)); justify-content: center; gap: 28px; margin: 24px 0 8px; }
+.prose .shots.screens { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.prose .shots.screens img { border: 1px solid var(--line); border-radius: 8px; background: #fff; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+.prose .shots.screens a { display: block; margin: 0; }
 .prose .shots.one { grid-template-columns: minmax(0, 260px); }
 .prose .shots figure { margin: 0; text-align: center; }
 .prose .shots img { border: 0; background: none; border-radius: 0; width: 100%; }
@@ -317,6 +320,7 @@ article > .prose:first-of-type > h2[id]:first-child { border-top: 0; padding-top
   .item { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   .prose table { display: block; overflow-x: auto; }
   .prose .shots.phone { gap: 16px; }
+  .prose .shots.screens { grid-template-columns: minmax(0, 1fr); }
   .prose .shots .device { padding: 6px; border-radius: 28px; }
   .prose .shots .device img { border-radius: 23px; }
   .prose .shots .device::before { top: 12px; height: 12px; }

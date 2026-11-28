@@ -62,13 +62,15 @@ export const experience = [
   },
   {
     slug: "ajuqms",
-    company: "(주)아주큐엠에스",
-    role: "RPA 인턴",
+    company: "아주큐엠에스(주)",
+    role: "하계 방학 인턴십, 대외사업본부 RPA솔루션팀",
     period: "23.06 — 23.08",
-    summary:
-      "RPA 공동구현 프로젝트에 참여했고, UiPath Academy 강의를 이수한 뒤 클라이언트 현업 교육에서 조교를 맡았습니다",
-    points: [] as string[],
-    tech: [] as string[],
+    summary: "RPA 솔루션팀에서 UiPath 교육과 RPA 공동구현 프로젝트에 참여했습니다",
+    points: [
+      "UiPath Academy 강의를 이수하고, 클라이언트 현업 교육 기간 중 실습 조교 역할을 수행했습니다",
+      "RPA 공동구현 프로젝트에 참여해 시세표 작성과 중대 클레임 구분 프로젝트의 설계와 개발에 참여했습니다",
+    ] as string[],
+    tech: ["UiPath", "RPA"] as string[],
   },
 ];
 

@@ -22,6 +22,14 @@ export default function ExperiencePage() {
                 <small>{e.role}</small>
               </h3>
               <p>{e.summary}</p>
+              {/* 상세 페이지가 없는 경력은 맡은 일을 목록에서 바로 보여준다 */}
+              {!("detail" in e && e.detail) && e.points.length > 0 && (
+                <ul>
+                  {e.points.map((pt) => (
+                    <li key={pt}>{pt}</li>
+                  ))}
+                </ul>
+              )}
               {e.tech.length > 0 && <Tags items={e.tech} />}
             </div>
           </>
